@@ -53,6 +53,17 @@ window.siteData = {
       ],
       url: "https://sglsystem.com/products/sustainable-grass-disease-management/turfrobot/",
     },
+    omnia: {
+      title: "Omnia®",
+      text:
+        "Meet Omnia®, the next generation of hospital hygiene. Using powerful UV-C light, Omnia eliminates pathogens across all hospital areas and collects valuable data for real-time monitoring and better decisions. Its fully autonomous operation eases pressure on staff so they can focus on patient care.",
+      highlights: [
+        "360° UV-C coverage from eight height-optimised lamps",
+        "Navigates tight spaces and recognises glass without markers",
+        "Safety features prevent UV-C exposure to people",
+        "Chemical-free disinfection",
+      ],
+    },
   },
 
   /*
@@ -66,6 +77,7 @@ window.siteData = {
       youtubeId: "f3GOu0XfhMY",
       description: "Field demo at Ajax Amsterdam Arena.",
       category: "Turfrobot",
+      group: "turfrobot",
       start: 0,
       end: 15,
     },
@@ -74,6 +86,7 @@ window.siteData = {
       youtubeId: "EdgrshERNv8",
       description: "Field demo at Ajax Amsterdam Arena.",
       category: "Turfrobot",
+      group: "turfrobot",
       start: 0,
       end: 15,
     },
@@ -82,6 +95,7 @@ window.siteData = {
       youtubeId: "gtMqWGorOtM",
       description: "Field demo at Ajax Amsterdam Arena.",
       category: "Turfrobot",
+      group: "turfrobot",
       start: 0,
       end: 15,
     },
@@ -90,7 +104,8 @@ window.siteData = {
       youtubeId: "GZl8NXowsL0",
       description:
         "Omnia® — autonomous UV-C hospital disinfection. 360° coverage from eight height-optimised lamps, with 3D stereo cameras, LiDAR, ultrasonic sensors and IMU for precise navigation through tight spaces and glass recognition. Chemical-free, with safety features that prevent UV-C exposure to people.",
-      category: "Ryberg",
+      category: "Ryberg's Omnia",
+      group: "omnia",
       start: 0,
       end: 15,
     },
@@ -99,7 +114,8 @@ window.siteData = {
       youtubeId: "gCBsf3STi4w",
       description:
         "Omnia® — autonomous UV-C hospital disinfection. 360° coverage from eight height-optimised lamps, with 3D stereo cameras, LiDAR, ultrasonic sensors and IMU for precise navigation through tight spaces and glass recognition. Chemical-free, with safety features that prevent UV-C exposure to people. Deployment at a client hospital in Dubai.",
-      category: "Ryberg",
+      category: "Ryberg's Omnia",
+      group: "omnia",
       start: 0,
       end: 15,
     },

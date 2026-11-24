@@ -52,9 +52,9 @@
     });
   }
 
-  function renderProjectIntro() {
-    const intro = data.projectIntros && data.projectIntros.turfrobot;
-    const target = byId("turfrobot-intro");
+  function renderProjectIntro(key, targetId) {
+    const intro = data.projectIntros && data.projectIntros[key];
+    const target = byId(targetId);
     if (!intro || !target) return;
 
     const panel = node("div", "project-intro card");
@@ -70,7 +70,7 @@
     }
 
     if (intro.url) {
-      const link = node("a", "project-link", "Learn more about TurfRobot ↗");
+      const link = node("a", "project-link", "Learn more about " + intro.title + " ↗");
       link.href = intro.url;
       link.target = "_blank";
       link.rel = "noopener noreferrer";
@@ -82,7 +82,10 @@
   }
 
   function renderVideos() {
-    const grid = byId("video-grid");
+    const grids = {
+      turfrobot: byId("turfrobot-videos"),
+      omnia: byId("omnia-videos"),
+    };
     const videos = data.videos || [];
 
     if (!videos.length) {
@@ -95,13 +98,14 @@
           "Add an unlisted YouTube video ID to the videos array in data.js and it will appear here automatically."
         )
       );
-      grid.append(empty);
+      grids.turfrobot.append(empty);
       byId("video-note").textContent =
         "Tip: in YouTube, set your video to “Unlisted”, then copy the ID from its link into data.js.";
       return;
     }
 
     videos.forEach((video) => {
+      const grid = grids[video.group] || grids.omnia;
       const card = node("article", "video-card");
       const thumb = node("button", "video-thumb");
       thumb.type = "button";
@@ -290,7 +294,8 @@
   }
 
   renderHero();
-  renderProjectIntro();
+  renderProjectIntro("turfrobot", "turfrobot-intro");
+  renderProjectIntro("omnia", "omnia-intro");
   renderVideos();
   renderExperience();
   renderEducation();
