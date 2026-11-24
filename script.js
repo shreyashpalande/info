@@ -57,7 +57,7 @@
     const target = byId(targetId);
     if (!intro || !target) return;
 
-    const panel = node("div", "project-intro card");
+    const panel = node("div", "project-intro");
     const copy = node("div", "project-intro-copy");
     copy.append(node("p", "eyebrow", "Project spotlight"));
     if (intro.title) copy.append(node("h3", "", intro.title));
