@@ -44,12 +44,12 @@ window.siteData = {
     turfrobot: {
       title: "TurfRobot",
       text:
-        "TurfRobot is SGL's autonomous grass-care machine for sports pitches. It uses calibrated UVC light to suppress fungal disease without chemicals, and navigates GPS-denied stadium environments using 3D LiDAR mapping and obstacle detection for TurfPods, grow lights and moving maintenance equipment. It follows pre-set treatment routes and UEFA/FIFA mowing patterns, so grounds teams can work on other tasks while it treats the field.",
+        "TurfRobot is SGL's autonomous grass-care machine for sports pitches. It uses UVC light to suppress fungal disease without chemicals, and navigates GPS-denied stadium environments using 3D LiDAR mapping and obstacle detection for TurfPods, grow lights and moving maintenance equipment. It follows UEFA/FIFA and custom mowing patterns, so grounds teams can work on other tasks while it treats the field.",
     },
     omnia: {
-      title: "Omnia®",
+      title: "Omnia",
       text:
-        "Omnia® — autonomous UV-C hospital disinfection. 360° coverage from eight height-optimised lamps, with 3D stereo cameras, LiDAR, ultrasonic sensors and IMU for precise navigation through tight spaces and glass recognition. Chemical-free, with safety features that prevent UV-C exposure to people.",
+        "Omnia — autonomous UV-C hospital disinfection. 360° coverage from eight UVC lamps, with 3D stereo cameras, LiDAR, ultrasonic sensors and IMU for precise navigation through tight spaces and glass surroundings. Chemical-free, with safety features that prevent UV-C exposure to people.",
     },
   },
 
