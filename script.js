@@ -22,7 +22,12 @@
   function renderHero() {
     if (profile.name) {
       byId("brand-name").textContent = profile.name;
-      byId("brand-mark").textContent = profile.name.trim().charAt(0).toUpperCase();
+      byId("brand-mark").textContent = profile.name
+        .trim()
+        .split(/\s+/)
+        .map((part) => part.charAt(0).toUpperCase())
+        .slice(0, 2)
+        .join("");
       byId("footer-name").textContent = profile.name;
       document.title = profile.name + (profile.role ? " - " + profile.role : " - Portfolio");
     }
@@ -32,23 +37,49 @@
     byId("hero-intro").textContent = profile.intro || "";
     byId("hero-current").textContent = profile.current || "";
 
-    const meta = byId("hero-meta");
-    if (profile.location) {
-      const location = node("span", "meta-item");
-      location.append(node("span", "meta-icon", "⌖"), document.createTextNode(profile.location));
-      meta.append(location);
-    }
+    if (profile.location) byId("hero-location").textContent = profile.location;
 
     const stats = byId("hero-stats");
-    const items = [
-      { value: "6+", label: "Years in robotics" },
-      { value: String((data.experience || []).length), label: "Roles across the field" },
-      { value: String((data.skills || []).length), label: "Skill areas" },
-    ];
+    const items = profile.stats || [];
     items.forEach((item) => {
       const stat = node("div", "stat");
-      stat.append(node("strong", "", item.value), node("span", "", item.label));
+      stat.append(node("dt", "", item.label), node("dd", "", item.value));
       stats.append(stat);
+    });
+  }
+
+  function renderExpertise() {
+    const list = byId("expertise-list");
+    if (!list) return;
+    (data.expertise || []).forEach((area) => {
+      const card = node("article", "card expertise-card");
+      card.append(node("h3", "", area.title || ""));
+      if (area.text) card.append(node("p", "", area.text));
+      if (area.tags && area.tags.length) {
+        const tags = node("div", "tag-list");
+        area.tags.forEach((tag) => tags.append(node("span", "tag", tag)));
+        card.append(tags);
+      }
+      list.append(card);
+    });
+  }
+
+  function renderHeroVideo() {
+    const media = byId("hero-media");
+    if (!media || !profile.heroVideo || reduceMotion) return;
+    const video = node("video", "hero-media-video");
+    video.muted = true;
+    video.loop = true;
+    video.autoplay = true;
+    video.playsInline = true;
+    video.setAttribute("playsinline", "");
+    video.preload = "auto";
+    video.poster = media.querySelector("img") ? media.querySelector("img").src : "";
+    video.src = profile.heroVideo;
+    video.addEventListener("playing", () => media.classList.add("video-ready"));
+    media.append(video);
+    video.play().catch(() => {
+      /* Autoplay blocked - the still photo stays visible */
     });
   }
 
@@ -58,10 +89,31 @@
     if (!intro || !target) return;
 
     const panel = node("div", "project-intro");
+    if (intro.image && intro.image.src) {
+      const figure = node("figure", "project-photo");
+      const img = node("img");
+      img.src = intro.image.src;
+      img.alt = intro.image.alt || "";
+      img.loading = "lazy";
+      figure.append(img);
+      panel.append(figure);
+    }
     const copy = node("div", "project-intro-copy");
-    copy.append(node("p", "eyebrow", "Project spotlight"));
-    if (intro.title) copy.append(node("h3", "", intro.title));
+        if (intro.title) copy.append(node("h3", "", intro.title));
+    if (intro.meta) copy.append(node("p", "project-meta", intro.meta));
     if (intro.text) copy.append(node("p", "", intro.text));
+    if (Array.isArray(intro.role) && intro.role.length) {
+      const role = node("div", "project-role");
+      role.append(node("strong", "", "My role"));
+      const ul = node("ul", "bullets");
+      intro.role.forEach((point) => ul.append(node("li", "", point)));
+      role.append(ul);
+      copy.append(role);
+    } else if (intro.role) {
+      const role = node("p", "project-role");
+      role.append(node("strong", "", "My role: "), document.createTextNode(intro.role));
+      copy.append(role);
+    }
 
     if (intro.highlights && intro.highlights.length) {
       const tags = node("div", "tag-list");
@@ -171,7 +223,7 @@
     });
 
     byId("video-note").textContent =
-      "Click a thumbnail for a short, muted looping preview. Use the link below a video to watch it in full on YouTube. Unlisted videos are viewable by anyone with the link - share mindfully.";
+      "Previews are short, muted loops. Use the link under each clip to watch the full video on YouTube.";
   }
 
   function renderExperience() {
@@ -194,6 +246,16 @@
         const ul = node("ul", "bullets");
         job.highlights.forEach((point) => ul.append(node("li", "", point)));
         content.append(ul);
+      }
+
+      if (job.image && job.image.src) {
+        const figure = node("figure", "job-photo");
+        const img = node("img");
+        img.src = job.image.src;
+        img.alt = job.image.alt || "";
+        img.loading = "lazy";
+        figure.append(img);
+        content.append(figure);
       }
 
       item.append(marker, content);
@@ -229,7 +291,8 @@
   function renderContact() {
     const panel = byId("contact-content");
     const intro = node("p", "contact-intro");
-    intro.textContent = "Open to new projects and conversations. The easiest way to reach me is email:";
+    intro.textContent =
+      "Open to robotics engineering roles and collaborations in perception, sensor fusion and autonomous navigation. The easiest way to reach me is email:";
     panel.append(intro);
 
     if (profile.email) {
@@ -239,6 +302,13 @@
     }
 
     const socials = node("div", "socials");
+    if (profile.resume) {
+      const cv = node("a", "btn btn-primary", "Download CV");
+      cv.href = profile.resume;
+      cv.target = "_blank";
+      cv.rel = "noopener";
+      socials.append(cv);
+    }
     (profile.socials || []).forEach((social) => {
       const link = node("a", "btn btn-secondary", social.label + " ↗");
       link.href = social.url;
@@ -257,7 +327,7 @@
 
   function setupReveals() {
     if (reduceMotion || !("IntersectionObserver" in window)) return;
-    const targets = document.querySelectorAll(".section-heading, .card, .project-intro, .timeline-item, .video-card, .contact-panel");
+    const targets = document.querySelectorAll(".section-heading, .card, .video-group, .timeline-item, .video-card, .contact-panel");
     targets.forEach((target) => target.classList.add("reveal"));
     const observer = new IntersectionObserver(
       (entries) => {
@@ -293,7 +363,34 @@
     sections.forEach((section) => observer.observe(section));
   }
 
+  function setupThemeToggle() {
+    const button = byId("theme-toggle");
+    if (!button) return;
+    const root = document.documentElement;
+    const sync = () => {
+      const isDark = root.getAttribute("data-theme") !== "light";
+      button.setAttribute("aria-label", isDark ? "Switch to light theme" : "Switch to dark theme");
+      button.title = isDark ? "Light theme" : "Dark theme";
+    };
+    button.addEventListener("click", () => {
+      const next = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+      root.setAttribute("data-theme", next);
+      try {
+        localStorage.setItem("theme", next);
+      } catch (e) {
+        /* storage unavailable - theme still switches for this visit */
+      }
+      sync();
+    });
+    sync();
+  }
+
+  const year = byId("footer-year");
+  if (year) year.textContent = String(new Date().getFullYear());
+
   renderHero();
+  renderHeroVideo();
+  renderExpertise();
   renderProjectIntro("turfrobot", "turfrobot-intro");
   renderProjectIntro("omnia", "omnia-intro");
   renderVideos();
@@ -303,4 +400,5 @@
   renderContact();
   setupReveals();
   setupScrollSpy();
+  setupThemeToggle();
 })();

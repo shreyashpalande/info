@@ -1,104 +1,156 @@
 /*
- * EDIT THIS FILE TO MAKE THE SITE YOURS.
- * Everything you see on the page comes from the object below.
- * After editing, save the file and push it to GitHub to update the live site.
+ * All site content lives here. Edit, save, commit and push to update the live site.
  */
 window.siteData = {
   profile: {
-    // Change this to your real name.
     name: "Shreyash Palande",
     role: "Robotics Engineer",
-    tagline: "Autonomous systems, sensor fusion and perception - from research to production.",
+    tagline: "I build the software that lets mobile robots see, localise and navigate - and keep working once they leave the lab.",
     intro:
-      "Robotics engineer with 6+ years of experience deploying autonomous systems, sensor fusion and perception algorithms. I work on multi-sensor integration (LiDAR, Radar, Camera, INS), mobile robot navigation and ROS/ROS2 development, delivering robust, production-ready certified solutions for complex robotic applications.",
+      "Robotics engineer with 6+ years of experience taking autonomous systems from prototype to safety-certified field deployment. I specialise in multi-sensor integration (LiDAR, radar, camera, INS), sensor fusion and state estimation, mobile robot navigation, functional safety (EN ISO 13849, IEC 60204-1) and ROS/ROS 2 development. MSc Systems and Control, TU Delft.",
     location: "The Netherlands",
-    current: "Robotics Engineer at SGL The Netherlands, working on autonomous turf maintenance robots.",
-    // Add your real email address here.
+    current: "Lead developer of SGL's TurfRobot, an autonomous turf-care robot with 50+ units sold to stadiums such as FC Bayern Munich, Ajax, Borussia Dortmund and Manchester City.",
+    // Optional background video for the top of the page (short, muted, compressed MP4).
+    // Leave empty to show the still photo only.
+    heroVideo: "assets/hero-turfrobot.mp4",
+    // To show "Download CV" buttons again, add the PDF to the repo and uncomment:
+    // resume: "Shreyash_Palande_Resume.pdf",
     email: "shreyashpalande60@gmail.com",
-    // Add real links (LinkedIn, GitHub, etc.). Delete any you don't want.
     socials: [
       { label: "LinkedIn", url: "https://www.linkedin.com/in/spalande97" },
       { label: "GitHub", url: "https://github.com/shreyashpalande" },
+    ],
+    // Hero highlight numbers. Keep them factual - every number should be defensible in an interview.
+    stats: [
+      { value: "6+", label: "Years in robotics" },
+      { value: "50+", label: "TurfRobot units sold" },
+      { value: "2", label: "Robots deployed to customers" },
     ],
     interests:
       "Trained yoga practitioner and certified trainer. I enjoy cycling, hiking, bouldering and photography.",
   },
 
+  // Core areas of expertise, shown as cards below the hero.
+  expertise: [
+    {
+      title: "Perception & sensor fusion",
+      text: "Radar-camera fusion, EKF-based multi-object tracking and small-obstacle detection with 3D LiDAR.",
+      tags: ["LiDAR", "Radar", "Camera", "PCL", "OpenCV"],
+    },
+    {
+      title: "Localisation & state estimation",
+      text: "LiDAR-IMU odometry, GNSS/INS with RTK corrections, and frame handling across ECEF, ENU and LLH.",
+      tags: ["EKF", "INS", "RTK-GNSS", "IMU"],
+    },
+    {
+      title: "Navigation & motion planning",
+      text: "Tuning ROS navigation stacks, local and global planners, and coverage patterns for GPS-denied sites.",
+      tags: ["ROS Nav", "Planners", "Obstacle avoidance"],
+    },
+    {
+      title: "Functional safety & compliance",
+      text: "Safety PLC software architecture and software-side certification of an autonomous UV-C robot.",
+      tags: ["EN ISO 13849", "IEC 60204-1", "IEC 62368-1", "Safety PLC"],
+    },
+    {
+      title: "Sensor integration & time sync",
+      text: "ROS 2 drivers for LiDAR, radar, cameras and INS, with sub-microsecond PTP/gPTP and GPS/PPS synchronisation.",
+      tags: ["ROS 2", "PTP/gPTP", "GPS/PPS", "Modbus TCP"],
+    },
+    {
+      title: "Fleet deployment",
+      text: "Containerised releases, over-the-air updates and secure networking for robots running at customer sites.",
+      tags: ["Docker", "OTA", "VPN", "Embedded Linux"],
+    },
+  ],
+
   /*
-   * VIDEOS: add one object per unlisted YouTube video.
-   *
-   * Get the ID from a link like:
-   *   https://youtu.be/VIDEO_ID_HERE  or  https://www.youtube.com/watch?v=VIDEO_ID_HERE
-   * Copy only the VIDEO_ID_HERE part into "youtubeId" below.
-   *
-   * Important: the video must allow embedding, and "unlisted" still means anyone
-   * with the link can watch it. Only share videos you are comfortable sharing.
-   *
-   * Example:
-   * { title: "Turfrobot obstacle avoidance", youtubeId: "dQw4w9WgXcQ",
-   *   description: "Small-object detection during field operations.",
-   *   date: "2026", category: "Navigation", start: 0, end: 15 }
+   * PROJECTS: an intro panel per project, followed by its videos.
+   * "role" says what YOU did on it - this is what recruiters read most.
    */
-  // Short project intro shown above the video grid.
   projectIntros: {
     turfrobot: {
       title: "TurfRobot",
+      meta: "SGL · 2026 – present",
+      image: {
+        src: "assets/hero-turfrobot-stadium.jpg",
+        alt: "SGL TurfRobot on the pitch at the Johan Cruijff ArenA, Amsterdam, next to LED grow-light rigs",
+      },
       text:
-        "TurfRobot is SGL's autonomous grass-care machine for sports pitches. It uses UVC light to suppress fungal disease without chemicals, and navigates GPS-denied stadium environments using 3D LiDAR mapping and obstacle detection for TurfPods, grow lights and moving maintenance equipment. It follows UEFA/FIFA and custom mowing patterns, so grounds teams can work on other tasks while it treats the field.",
+        "SGL's autonomous grass-care robot for professional football pitches. It treats the grass with UV-C light to suppress fungal disease without chemicals, and navigates GPS-denied stadiums using 3D LiDAR mapping. It follows UEFA/FIFA and custom mowing patterns, so grounds teams can work on other tasks while it treats the field.",
+      // "role" can be a single sentence or a list of bullet points.
+      role: [
+        "Lead developer on a product with 50+ units sold, in use at stadiums including FC Bayern Munich, Ajax, Borussia Dortmund and Manchester City.",
+        "Own the architecture of the obstacle detection and avoidance system, detecting everything from 15 cm objects such as TurfPods to large grow-light rigs and moving maintenance equipment.",
+        "Developed multi-segment operation, so the robot can treat several separate zones of the same pitch in one job.",
+        "Built the over-the-air (OTA) update system for the fleet.",
+        "Work closely with the product owner and field service engineers to turn on-site feedback into features and fixes.",
+      ],
+      highlights: ["3D LiDAR", "Obstacle avoidance", "Multi-segment coverage", "GPS-denied navigation", "ROS 2", "OTA updates"],
     },
     omnia: {
       title: "Omnia",
+      meta: "Ryberg · 2022 – 2025",
       text:
-        "Omnia — autonomous UV-C hospital disinfection. 360° coverage from eight UVC lamps, with 3D stereo cameras, LiDAR, ultrasonic sensors and IMU for precise navigation through tight spaces and glass surroundings. Chemical-free, with safety features that prevent UV-C exposure to people.",
+        "An autonomous UV-C disinfection robot for hospitals. Eight UV-C lamps give 360° coverage, and stereo cameras, LiDAR, ultrasonic sensors and an IMU let it navigate tight spaces and glass surroundings. Safety features prevent UV-C exposure to people.",
+      role: [
+        "Responsible for the robot's software and its safety certification, bringing it into compliance with IEC 62368-1, IEC 60204-1 and the relevant parts of EN ISO 13849.",
+        "Designed the safety PLC software architecture (Siemens S7-1200F) and its ROS interface over Modbus TCP.",
+        "Owned the navigation pipeline end to end: obstacle detection, localisation and path planning.",
+        "Built a UV-C exposure model of how the lamps' dose spreads through a room.",
+        "Defined system requirements, led sensor selection, and set up containerised deployment and the VPN-based fleet network.",
+      ],
+      highlights: ["Functional safety", "EN ISO 13849", "Safety PLC", "ROS navigation", "Localisation", "UV-C dose modelling"],
     },
   },
 
   /*
-   * Rename titles/descriptions as you like.
-   * "start" and "end" are the preview window in seconds - clicking a tile plays
-   * only that part, on a loop. Change them to show a different part of a video.
+   * VIDEOS: one object per unlisted YouTube video (it must allow embedding).
+   * youtubeId is the part after https://youtu.be/
+   * "start" and "end" are the preview window in seconds.
    */
   videos: [
     {
-      title: "Turfrobot clip 1",
+      title: "Navigating between grow-light rigs",
       youtubeId: "f3GOu0XfhMY",
-      description: "Field demo at Ajax Amsterdam Arena.",
-      category: "Turfrobot",
+      description: "Driving its route alongside LED grow-light rigs at the Johan Cruijff ArenA, Amsterdam.",
+      category: "TurfRobot",
       group: "turfrobot",
       start: 0,
       end: 15,
     },
     {
-      title: "Turfrobot clip 2",
+      title: "Small-object detection and avoidance",
       youtubeId: "EdgrshERNv8",
-      description: "Field demo at Ajax Amsterdam Arena.",
-      category: "Turfrobot",
+      description: "Detecting and steering around a small object on the pitch during operation.",
+      category: "TurfRobot",
       group: "turfrobot",
       start: 0,
       end: 15,
     },
     {
-      title: "Turfrobot clip 3",
+      title: "Close-range manoeuvring around equipment",
       youtubeId: "gtMqWGorOtM",
-      description: "Field demo at Ajax Amsterdam Arena.",
-      category: "Turfrobot",
+      description: "Working close to grow-light rigs on the stadium pitch.",
+      category: "TurfRobot",
       group: "turfrobot",
       start: 0,
       end: 15,
     },
     {
-      title: "Ryberg clip 1",
+      title: "Operating-theatre disinfection",
       youtubeId: "GZl8NXowsL0",
-      category: "Ryberg's Omnia",
+      description: "Autonomous UV-C cycle in a hospital operating theatre.",
+      category: "Omnia",
       group: "omnia",
       start: 0,
       end: 15,
     },
     {
-      title: "Ryberg clip 2",
+      title: "Patient-room disinfection",
       youtubeId: "gCBsf3STi4w",
-      description: "Deployment at a hospital in Dubai.",
-      category: "Ryberg's Omnia",
+      description: "Deployment in an intensive-care room at a hospital in Dubai.",
+      category: "Omnia",
       group: "omnia",
       start: 0,
       end: 15,
@@ -108,7 +160,7 @@ window.siteData = {
   education: [
     {
       school: "Delft University of Technology",
-      degree: "MSc. Systems and Control",
+      degree: "MSc Systems and Control",
       years: "Aug 2018 – Oct 2020",
       location: "Delft, The Netherlands",
       description: "",
@@ -117,19 +169,26 @@ window.siteData = {
 
   experience: [
     {
-      role: "Robotics Engineer",
+      role: "Robotics Engineer - Lead Developer, TurfRobot",
       company: "SGL",
       location: "The Netherlands",
       years: "March 2026 – Present",
       highlights: [
-        "Developed obstacle detection and avoidance algorithms for the SGL turfrobot to reliably detect and avoid small turfpods and pitch objects during field operations.",
+        "Lead developer of TurfRobot, an autonomous UV-C turf-care robot with 50+ units sold to stadiums including FC Bayern Munich, Ajax, Borussia Dortmund and Manchester City.",
+        "Own the architecture of the obstacle detection and avoidance system, reliably detecting objects from 15 cm TurfPods up to large grow-light rigs during field operations.",
+        "Developed multi-segment operation, allowing the robot to treat several zones of the same pitch in a single job.",
         "Implemented an over-the-air (OTA) update system for the robot fleet to streamline software deployment and remote management.",
+        "Work with the product owner and field service engineers to prioritise features and resolve on-site issues.",
       ],
     },
     {
       role: "Robotics Engineer",
       company: "PercivAi",
       location: "The Netherlands",
+      image: {
+        src: "assets/percivai-vehicles.jpg",
+        alt: "Shreyash with PercivAI's sensor-equipped test car and off-road vehicle",
+      },
       years: "June 2025 – Feb 2026",
       highlights: [
         "Engineered multi-sensor system integration for automotive, off-road and drone platforms, orchestrating data acquisition from heterogeneous sensor arrays comprising multiple radars, cameras, LiDARs, odometry sensors and INS units.",
@@ -144,9 +203,11 @@ window.siteData = {
       location: "Delft, The Netherlands",
       years: "July 2022 – May 2025",
       highlights: [
-        "Developed system requirements and led the sensor selection process for autonomous mobile robots - including LiDAR, cameras and ultrasonic sensors - to ensure optimal performance within project constraints.",
-        "Designed and implemented low-level ROS drivers for industrial hardware, including Siemens S71200F PLC and various sensors, establishing robust communication protocols across multiple interfaces (Modbus TCP, etc.).",
-        "Configured, tuned and optimized ROS navigation stack components, enhancing motion planning and obstacle avoidance algorithms (e.g. local/global planners), and implemented hardware interfaces for odometry and sensor data integration.",
+        "Responsible for the software of the Omnia autonomous UV-C disinfection robot and its safety certification, bringing it into compliance with IEC 62368-1, IEC 60204-1 and the relevant parts of EN ISO 13849.",
+        "Designed the safety PLC software architecture (Siemens S7-1200F) and implemented ROS drivers for the PLC and sensors over Modbus TCP.",
+        "Owned the navigation pipeline from obstacle detection and localisation to path planning, tuning the ROS navigation stack's local and global planners.",
+        "Built a UV-C exposure model to estimate how the lamps' dose spreads through a room.",
+        "Developed system requirements and led sensor selection (LiDAR, cameras, ultrasonic sensors) for the autonomous mobile robot.",
         "Created containerized environments for robot software deployment, enabling consistent and reliable updates across the robot fleet.",
         "Established a secure network architecture for robot fleet operations, including VPN setup and system integration for seamless communication and commissioning between backend services, ROS nodes and tablet interfaces.",
       ],
@@ -199,6 +260,10 @@ window.siteData = {
     {
       category: "Hardware",
       items: ["Nvidia Jetson", "Arduino", "Siemens S7 PLC", "3D LiDAR", "GigE/ToF cameras", "GNSS", "INS", "Radar"],
+    },
+    {
+      category: "Functional safety",
+      items: ["EN ISO 13849", "IEC 60204-1", "IEC 62368-1", "Safety PLC (S7-1200F)", "Siemens TIA Portal"],
     },
     {
       category: "Time synchronization",

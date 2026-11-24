@@ -1,2 +1,10 @@
 # Embedded Git repo left untouched (not part of this site)
 personal_website/
+
+# Original camera files: large and contain GPS/EXIF metadata.
+# Only the web-optimised copies in assets/ are published.
+PXL_*
+IMG_*
+*.mp4
+!assets/*.mp4
+*.pdf
