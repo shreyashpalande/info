@@ -52,6 +52,35 @@
     });
   }
 
+  function renderProjectIntro() {
+    const intro = data.projectIntros && data.projectIntros.turfrobot;
+    const target = byId("turfrobot-intro");
+    if (!intro || !target) return;
+
+    const panel = node("div", "project-intro card");
+    const copy = node("div", "project-intro-copy");
+    copy.append(node("p", "eyebrow", "Project spotlight"));
+    if (intro.title) copy.append(node("h3", "", intro.title));
+    if (intro.text) copy.append(node("p", "", intro.text));
+
+    if (intro.highlights && intro.highlights.length) {
+      const tags = node("div", "tag-list");
+      intro.highlights.forEach((item) => tags.append(node("span", "tag", item)));
+      copy.append(tags);
+    }
+
+    if (intro.url) {
+      const link = node("a", "project-link", "Learn more about TurfRobot ↗");
+      link.href = intro.url;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      copy.append(link);
+    }
+
+    panel.append(copy);
+    target.append(panel);
+  }
+
   function renderVideos() {
     const grid = byId("video-grid");
     const videos = data.videos || [];
@@ -224,7 +253,7 @@
 
   function setupReveals() {
     if (reduceMotion || !("IntersectionObserver" in window)) return;
-    const targets = document.querySelectorAll(".section-heading, .card, .timeline-item, .video-card, .contact-panel");
+    const targets = document.querySelectorAll(".section-heading, .card, .project-intro, .timeline-item, .video-card, .contact-panel");
     targets.forEach((target) => target.classList.add("reveal"));
     const observer = new IntersectionObserver(
       (entries) => {
@@ -261,6 +290,7 @@
   }
 
   renderHero();
+  renderProjectIntro();
   renderVideos();
   renderExperience();
   renderEducation();

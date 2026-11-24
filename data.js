@@ -39,6 +39,22 @@ window.siteData = {
    *   description: "Small-object detection during field operations.",
    *   date: "2026", category: "Navigation", start: 0, end: 15 }
    */
+  // Short project intro shown above the video grid.
+  projectIntros: {
+    turfrobot: {
+      title: "TurfRobot",
+      text:
+        "TurfRobot is SGL's autonomous grass-care machine for sports pitches. It uses calibrated UVC light to suppress fungal disease without chemicals, and navigates GPS-denied stadium environments using 3D LiDAR mapping and obstacle detection for TurfPods, grow lights and moving maintenance equipment. It follows pre-set treatment routes and UEFA/FIFA mowing patterns, so grounds teams can work on other tasks while it treats the field.",
+      highlights: [
+        "UVC disease control",
+        "3D LiDAR navigation in stadiums",
+        "Obstacle detection",
+        "Autonomous treatment routes",
+      ],
+      url: "https://sglsystem.com/products/sustainable-grass-disease-management/turfrobot/",
+    },
+  },
+
   /*
    * Rename titles/descriptions as you like.
    * "start" and "end" are the preview window in seconds - clicking a tile plays
@@ -72,7 +88,8 @@ window.siteData = {
     {
       title: "Ryberg clip 1",
       youtubeId: "GZl8NXowsL0",
-      description: "Mobile robot development at Ryberg BV.",
+      description:
+        "Omnia® — autonomous UV-C hospital disinfection. 360° coverage from eight height-optimised lamps, with 3D stereo cameras, LiDAR, ultrasonic sensors and IMU for precise navigation through tight spaces and glass recognition. Chemical-free, with safety features that prevent UV-C exposure to people.",
       category: "Ryberg",
       start: 0,
       end: 15,
@@ -80,7 +97,8 @@ window.siteData = {
     {
       title: "Ryberg clip 2",
       youtubeId: "gCBsf3STi4w",
-      description: "Mobile robot development at Ryberg BV. Deployment at a client hospital in Dubai.",
+      description:
+        "Omnia® — autonomous UV-C hospital disinfection. 360° coverage from eight height-optimised lamps, with 3D stereo cameras, LiDAR, ultrasonic sensors and IMU for precise navigation through tight spaces and glass recognition. Chemical-free, with safety features that prevent UV-C exposure to people. Deployment at a client hospital in Dubai.",
       category: "Ryberg",
       start: 0,
       end: 15,
